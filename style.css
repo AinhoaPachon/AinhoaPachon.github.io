@@ -28,19 +28,15 @@ body {
   text-align: center;
 }
 
+img#login-image {
+  width: 100px;
+  height: 100px;
+}
+
 .user {
   grid-area: 3 / 2 / 4 / 3;
   background-color: rgb(219 163 154);
   text-align: center;
-}
-
-input#login::placeholder {
-  color: white;
-}
-
-input[id="login"]
-{
-    font-size:25px;
 }
 
 .login-username {
@@ -77,14 +73,18 @@ input[id="login"]
   background-color: rgb(219 163 154);
 }
 
+input#login::placeholder {
+  color: white;
+}
+
+input[id="login"]
+{
+    font-size:25px;
+}
+
 .button-space {
   grid-area: 5 / 2 / 6 / 3;
   text-align: center;
-}
-
-img#login-image {
-  width: 100px;
-  height: 100px;
 }
 
 .login-button {
@@ -146,6 +146,20 @@ img#login-image {
   flex-flow: nowrap;
 }
 
+
+
+.receiver-info {
+  background-color: rgb(219 163 154);
+  grid-area: 2 / 3 / 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(219 163 154);
+  border-radius: 10px;
+  padding: 15px;
+  flex-flow: nowrap;
+}
+
 .image {
   flex-basis: 40%;
   transition: all 1s;
@@ -162,39 +176,10 @@ img#login-image {
   padding-left: 15px;
 }
 
-.receiver-info {
-  background-color: rgb(219 163 154);
-  grid-area: 2 / 3 / 2 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: rgb(219 163 154);
-  border-radius: 10px;
-  padding: 15px;
-  flex-flow: nowrap;
-}
-
-.history {
-  background-color: rgb(204, 214, 166);
-  grid-area: 3 / 2 / 5 / 2;
-}
-
-.room {
-  background-color: rgb(245, 235, 224);
-  margin: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: calc( 100% - 10px);
-  height: 50px;
-  border-radius: 10px;
-}
-
 .chat { 
   background-color: rgb(254, 252, 243);
   background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
-  grid-area: 3 / 3 / 3 / 3;
+  grid-area: 3 / 2 / 3 / 4;
   flex-direction: column;
   justify-content: flex-end;
   padding: 20px;
@@ -258,27 +243,15 @@ img#login-image {
 }
 
 .writting-bar {
-  background-color: rgb(245, 235, 224);
-  grid-area: 4 / 3 / 5 / 4;
+  background-color: rgb(204, 214, 166);
+  border-radius: 7px;
+  grid-area: 4 / 2 / 5 / 4;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-flow: nowrap;
   padding: 0.3rem;
   gap: 3px
-}
-
-.send {
-  border: 2px solid rgb(204, 214, 166);
-  background-color: rgb(204, 214, 166);
-  padding-left: 0.1rem;
-  padding-right: 0.1rem;
-  width: 30px;
-  height: 30px;
-  font-size: larger;
-  align-items: center;
-  border-radius: 7px;
-  cursor: pointer;
 }
 
 .input-message {
@@ -294,4 +267,17 @@ img#login-image {
 .input-message:hover, .input-message:focus {
   border-color: rgb(219 163 154);
   border-width: 2px;
+}
+
+.send {
+  border: 0.1rem solid rgb(218, 226, 182);
+  background-color: rgb(204, 214, 166);
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  width: 30px;
+  height: 30px;
+  font-size: larger;
+  align-items: center;
+  border-radius: 7px;
+  cursor: pointer;
 }

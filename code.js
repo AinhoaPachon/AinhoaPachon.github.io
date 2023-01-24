@@ -54,9 +54,6 @@ var MYCHAT = {
 
         MYCHAT.input_message = document.querySelector("input.input-message");
         MYCHAT.input_message.addEventListener("keydown", MYCHAT.onKeyDownChat);
-
-        var selected = document.querySelector(".history");
-        selected.addEventListener("click", MYCHAT.selectRoom);
         
         MYCHAT.server = new SillyClient();
         MYCHAT.server.on_user_connected = MYCHAT.onServerUserConnected;
@@ -83,7 +80,7 @@ var MYCHAT = {
             if(!MYCHAT.isEmpty(MYCHAT.rooms.roomID.value))
                 MYCHAT.checkRoom();
             else
-                MYCHAT.rooms.actualRoom = "StardewChat";
+                MYCHAT.rooms.actualRoom = "StardewChat";  // default room
             console.log("User and room added");
             MYCHAT.login();
         }
@@ -95,7 +92,7 @@ var MYCHAT = {
             if(!MYCHAT.isEmpty(MYCHAT.rooms.roomID.value))
                 MYCHAT.checkRoom();
             else
-                MYCHAT.rooms.actualRoom = "StardewChat";
+                MYCHAT.rooms.actualRoom = "StardewChat";  // default room
             console.log("User and room added");
             MYCHAT.login();
         }
@@ -103,36 +100,30 @@ var MYCHAT = {
 
     onServerRoomInfo: function(user_id)
     {
-        MYCHAT.getUsers();
+        MYCHAT.user.users = Object.keys(MYCHAT.server.clients).map(Number);  // returns the clients keys mapped into a Number, i. e. the id's
         var msg = "Welcome to Stardew Chat!";
         MYCHAT.showSysMessage( msg );
     },
 
     onServerReady: function(user_id)
     {
-        MYCHAT.user.userID = user_id;
-    },
-
-    getUsers: function() 
-    {
-        MYCHAT.user.users = Object.keys(MYCHAT.server.clients).map(Number);
+        MYCHAT.user.userID = user_id;  // asign the used_id given by the server to the user
     },
 
     onServerUserConnected: function(user_id)
     {
-        MYCHAT.user.users.push(Number(user_id));
+        MYCHAT.user.users.push(Number(user_id));  // adds the user to the list of users
 
         var msg = user_id + " connected";
         MYCHAT.showSysMessage(msg);
 
         var minID = Math.min.apply(Math, MYCHAT.user.users);
 
-        if(MYCHAT.user.userID == minID)
+        if(MYCHAT.user.userID == minID)  // checks if it's the lowest ID user
         {
             for( let i = 0; i < MYCHAT.dataBase.length; i++)
             {
-                if(MYCHAT.dataBase[i].type != "sys")
-                    MYCHAT.server.sendMessage(MYCHAT.dataBase[i], [user_id]);
+                MYCHAT.server.sendMessage(MYCHAT.dataBase[i], [user_id]);  // sends the history of messages
             }
         }
     },
@@ -141,7 +132,7 @@ var MYCHAT = {
     {
         var msg = user_id + " disconnected";
 
-        const index = MYCHAT.user.users.indexOf(Number(user_id));
+        const index = MYCHAT.user.users.indexOf(Number(user_id));  // gets the id of the user who disconnected
         if (index > -1) { // only splice array when item is found
             MYCHAT.user.users.splice(index, 1); // 2nd parameter means remove one item only
         }
@@ -159,7 +150,7 @@ var MYCHAT = {
             profile_pic: profile_pic
         }
 
-        MYCHAT.dataBase.push(msg);
+        MYCHAT.dataBase.push(msg);  // creates the message and pushes it to the database
 
         return msg;
     },
@@ -168,7 +159,6 @@ var MYCHAT = {
     {
         var div = document.createElement("div"); // A separation for each message
         div.className = "sys-message";
-        
         var p = document.createElement("p"); // Content for the message
         
         var newMsg = MYCHAT.createMessage("sys", msg, "System", MYCHAT.rooms.actualRoom, null);
@@ -178,7 +168,6 @@ var MYCHAT = {
         console.log(p.innerText);
         
         div.appendChild( p ); // Put the text inside the division
-        
         var log = document.querySelector("div.chat");
         log.appendChild( div );  // Put the division on the chat
         log.scrollTop = 10000;
@@ -186,7 +175,7 @@ var MYCHAT = {
     
     receiveMessage: function( user_id, msg )
     {
-        var parsed = JSON.parse( msg );
+        var parsed = JSON.parse( msg );  // parses the stringified message
         var newMsg = MYCHAT.createMessage(parsed.type, parsed.content, parsed.username, parsed.roomname, parsed.profile_pic);
         
         var div = document.createElement("div"); // A separation for each message
@@ -276,23 +265,14 @@ var MYCHAT = {
         else
         {
             MYCHAT.send_button.style.backgroundColor = "rgb(204, 214, 166)"; // If we delete the message, the color of the button changes to its previous color
-            MYCHAT.send_button.style.borderColor = "rgb(204, 214, 166)";
+            MYCHAT.send_button.style.borderColor = "rgb(218, 226, 182)";
         }
     
         if(MYCHAT.input_message.value != "" && event.code == "Enter")
         {
             MYCHAT.sendMessage();
             MYCHAT.send_button.style.backgroundColor = "rgb(204, 214, 166)"; // When we send the message, adjust the color to the original color
-            MYCHAT.send_button.style.borderColor = "rgb(204, 214, 166)"; 
+            MYCHAT.send_button.style.borderColor = "rgb(218, 226, 182)"; 
         }
-    },
-
-    selectRoom: function(event)
-    {
-        if(event.target.id)
-            MYCHAT.actualRoom = event.target.id;
-
-        console.log(MYCHAT.actualRoom);
     }
-
 }
