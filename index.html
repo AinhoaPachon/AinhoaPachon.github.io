@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>StardewChat</title>
+        <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+        <link rel="icon" href="images/plants.ico">
+		<script type="text/javascript" src="code.js"></script>
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="login-title">
+                <img id="login-image" class="title-image" src="images/plants.png">
+          </div>
+            <div class="user">
+                <input id = "login" class = "login-username" type = "text" placeholder="Username">
+            </div>
+            <div class="roomname">
+                <input id = "login" class = "login-roomname" type = "text" placeholder="Roomname. Default: StardewChat">
+            </div>
+            <div class="button-space">
+                <button class="login-button">
+                    <p>Log in</p>
+                </button>
+            </div>
+        </div>
+        <div class="avatar-page">
+            <img class="avatar" id="elliott" src="images/Elliott.png"/>
+            <img class="avatar" id="jodi" src="images/Jodi.png"/>
+            <img class="avatar" id="leah" src="images/Leah.png"/>
+            <img class="avatar" id="pierre" src="images/Pierre.png"/>
+            <img class="avatar" id="willy" src="images/Willy.png"/>
+            <img class="avatar" id="evelyn" src="images/Evelyn.png"/>
+        </div>
+        <div class="chat-page">
+            <div class="user-info">
+                <div class="profile-picture">
+                </div>
+                <div class="text" id="username">
+                </div>
+            </div>
+            <div class="receiver-info">
+                <div class="profile-picture">
+                    <img id="receiver-image" class="image" src="images/plants.png"/>
+                </div>
+                <div class="text" id="roomname">
+                </div>
+            </div>
+            <div class="history">
+                <div class="room" id="room1">
+                    StardewChat
+                </div>
+                <div class="room" id="room2">
+                    Room 2
+                </div>
+            </div>
+            <div class="chat">
+            </div>
+            <div class="writting-bar">
+                <input class = "input-message" type = "text">
+                <div class="send-button">
+                    <button class="send">></button>
+                </div>
+            </div>
+        </div>
+        <script src="sillyclient.js"></script>
+        <script>MYCHAT.init()</script>
+    </body>
+</html>
